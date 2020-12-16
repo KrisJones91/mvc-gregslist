@@ -6,11 +6,9 @@ class CarsService {
     ProxyState.cars = ProxyState.cars.filter(car => car.id != id)
   }
   createCar(newCar) {
-    console.log("SERVICE: createCar", 2)
+    console.log("SERVICE: createCar")
     let car = new Car(newCar)
-    console.log(4)
     ProxyState.cars = [...ProxyState.cars, car]
-    console.log(6)
   }
 
 }

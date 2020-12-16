@@ -2,7 +2,6 @@ import { generateId } from "../Utils/GenerateId.js"
 
 export default class Car {
   constructor({ make, model, year, price, description, imgUrl }) {
-    console.log("MODEL: constructor", 3)
     this.id = generateId()
     this.make = make
     this.model = model

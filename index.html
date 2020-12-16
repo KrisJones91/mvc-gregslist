@@ -22,10 +22,16 @@
     </header>
     <main class="container">
         <div class="row mt-2">
-            <div class="col text-right">
+            <div class="col text-center">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                    data-target="#new-car-modal">+</button>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="button" data-toggle="modal"
+                        data-target="#new-car-modal">Cars</button>
+                </div>
+                <div>
+                    <button class="btn btn-primary mt-2" type="button" data-toggle="modal"
+                        data-target="#new-house-modal">Houses</button>
+                </div>
                 <!-- Modal -->
                 <div class="modal fade" id="new-car-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
                     aria-hidden="true">
@@ -57,13 +63,45 @@
                 </div>
             </div>
         </div>
+        <div class="col text-right">
+            <!-- Modal -->
+            <div class="modal fade" id="new-house-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">NEW HOUSE FORM</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form onsubmit="app.housesController.createHouse()">
+                                <input type="text" id="company" placeholder="company" required>
+                                <input type="text" id="jobTitle" placeholder="jobTitle" required>
+                                <input type="number" id="hours" placeholder="hours" required value="8">
+                                <input type="number" id="rate" placeholder="rate" required min="1">
+                                <input type="text" id="description" placeholder="description">
+                                <input type="text" id="imgUrl" placeholder="Image Url">
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row" id="cars">
+        </div>
+        <div class="row" id="houses">
         </div>
     </main>
     <footer class="container-fluid bg-dark text-light">
         <div class="row text-center">
             <div class="col">
-                <p><small>Made with love by Codeworks</small></p>
+                <p><small>Made with &hearts; by Kris Jones</small></p>
             </div>
         </div>
     </footer>
