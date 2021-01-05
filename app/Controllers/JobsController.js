@@ -13,10 +13,19 @@ function _drawJobs() {
 export default class JobsController {
     constructor() {
         ProxyState.on("jobs", _drawJobs)
-
+        _drawJobs()
+        this.getJobs()
     }
 
-    createJob() {
+    getJobs() {
+        try {
+            jobsService.getJobs()
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    createJobs() {
         window.event.preventDefault()
         console.log("creating a job")
         let form = window.event.target
@@ -26,23 +35,27 @@ export default class JobsController {
             hours: form['hours'].value,
             rate: form['rate'].value,
             description: form['description'].value,
-            imgUrl: form['imgUrl'].value
+
         }
-        jobsService.createHouse(newJob)
+        try {
+            jobsService.createJobs(newJob)
+        } catch (error) {
+            console.error(error)
+        }
+
         // @ts-ignore
         form.reset()
         // @ts-ignore
-        document.getElementById("new-jobs-modal").modal('hide')
+        $("#new-jobs-modal").modal('hide')
         _drawJobs()
 
     }
 
-
-
-
-
-
-    deleteHouse(id) {
-        jobsService.deleteJob(id)
+    deleteJobs(id) {
+        try {
+            jobsService.deleteJobs(id)
+        } catch (error) {
+            console.error(error)
+        }
     }
 }

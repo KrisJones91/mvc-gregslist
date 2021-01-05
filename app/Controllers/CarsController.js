@@ -3,7 +3,6 @@ import { carsService } from "../Services/CarsService.js"
 
 
 function _drawCars() {
-  console.log(5)
   let cars = ProxyState.cars
   let template = ''
   cars.forEach(car => {
