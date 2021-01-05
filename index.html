@@ -7,16 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/style/main.css">
-    <title>mvc-gregslist</title>
+    <title>Gregslist</title>
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-dark navbar-expand bg-primary text-light">
             <a class="navbar-brand" href="#">
-                <img src="assets/img/logo.png" width="45" height="45" alt="" loading="lazy">
-                <span class="ml-2">mvc-gregslist</span>
+                <i class="fab fa-guilded fa-2x"></i>
+                <span class="ml-2" style="font-family: 'Josefin Sans', sans-serif;">Gregslist</span>
             </a>
         </nav>
     </header>
@@ -25,12 +30,14 @@
             <div class="col text-center">
                 <!-- Button trigger modal -->
                 <div class="d-grid gap-2">
-                    <button class="btn btn-primary" type="button" data-toggle="modal"
+                    <button class="btn btn-primary mt-2" type="button" data-toggle="modal"
                         data-target="#new-car-modal">Cars</button>
-                </div>
-                <div>
+
                     <button class="btn btn-primary mt-2" type="button" data-toggle="modal"
                         data-target="#new-house-modal">Houses</button>
+
+                    <button class="btn btn-primary mt-2" type="button" data-toggle="modal"
+                        data-target="#new-job-modal">Jobs</button>
                 </div>
                 <!-- Modal -->
                 <div class="modal fade" id="new-car-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
@@ -43,7 +50,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body text-center">
                                 <form onsubmit="app.carsController.createCar()">
                                     <input type="text" id="make" placeholder="make" required>
                                     <input type="text" id="model" placeholder="model" required>
@@ -75,8 +82,39 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body text-center">
                             <form onsubmit="app.housesController.createHouse()">
+                                <input type="number" id="bedrooms" placeholder="bedrooms" required>
+                                <input type="number" id="bathrooms" placeholder="bath" required>
+                                <input type="number" id="levels" placeholder="levels" required value="1">
+                                <input type="number" id="year" placeholder="year" required min="1">
+                                <input type="number" id="price" placeholder="price" required min="1">
+                                <input type="text" id="description" placeholder="description">
+                                <input type="text" id="imgUrl" placeholder="Image Url">
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col text-right">
+            <!-- Modal -->
+            <div class="modal fade" id="new-job-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">NEW JOB FORM</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <form onsubmit="app.jobsController.createJobs()">
                                 <input type="text" id="company" placeholder="company" required>
                                 <input type="text" id="jobTitle" placeholder="jobTitle" required>
                                 <input type="number" id="hours" placeholder="hours" required value="8">
@@ -97,6 +135,8 @@
         </div>
         <div class="row" id="houses">
         </div>
+        <div class="row" id="jobs">
+        </div>
     </main>
     <footer class="container-fluid bg-dark text-light">
         <div class="row text-center">
@@ -110,6 +150,9 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
         crossorigin="anonymous"></script>
     <script src="app/main.js" type="module"></script>
 </body>

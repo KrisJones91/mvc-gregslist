@@ -1,7 +1,9 @@
 import { ProxyState } from "../AppState.js"
 import { carsService } from "../Services/CarsService.js"
 
+
 function _drawCars() {
+  console.log(5)
   let cars = ProxyState.cars
   let template = ''
   cars.forEach(car => {
@@ -11,10 +13,20 @@ function _drawCars() {
   document.getElementById('cars').innerHTML = template
 }
 
+
 export default class CarsController {
   constructor() {
     ProxyState.on("cars", _drawCars)
     _drawCars()
+    this.getCars()
+  }
+
+  getCars() {
+    try {
+      carsService.getCars()
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   createCar() {
@@ -29,16 +41,38 @@ export default class CarsController {
       description: form['description'].value,
       imgUrl: form['imgUrl'].value
     }
-    carsService.createCar(newCar)
+    try {
+      carsService.createCar(newCar)
+
+    } catch (error) {
+      console.error(error)
+    }
+
     console.log(7)
     // @ts-ignore
     form.reset()
     // @ts-ignore
-    document.getElementById("new-car-modal").modal('hide');
+    $("#new-car-modal").modal('hide');
   }
 
 
   deleteCar(id) {
-    carsService.deleteCar(id)
+    console.log(id);
+    try {
+      carsService.deleteCar(id)
+    } catch (error) {
+      console.error(error)
+    }
   }
+
+  bid(id, price) {
+    try {
+      console.log(id, price)
+      carsService.bid(id, price)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+
 }

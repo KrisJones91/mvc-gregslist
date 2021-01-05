@@ -14,6 +14,14 @@ export default class HousesController {
     constructor() {
         ProxyState.on("houses", _drawHouses)
         _drawHouses()
+        this.getHouses()
+    }
+    getHouses() {
+        try {
+            housesService.getHouses()
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     createHouse() {
@@ -21,10 +29,11 @@ export default class HousesController {
         console.log("creating a house")
         let form = window.event.target
         let newHouse = {
-            company: form['company'].value,
-            jobTitle: form['jobTitle'].value,
-            hours: form['hours'].value,
-            rate: form['rate'].value,
+            bedrooms: form['bedrooms'].value,
+            bathrooms: form['bathrooms'].value,
+            levels: form['levels'].value,
+            year: form['year'].value,
+            price: form['price'].value,
             description: form['description'].value,
             imgUrl: form['imgUrl'].value
         }
@@ -33,16 +42,41 @@ export default class HousesController {
         form.reset()
         // @ts-ignore
         document.getElementById("new-house-modal").modal('hide')
-
+        _drawHouses()
 
     }
-
-
-
-
-
 
     deleteHouse(id) {
-        housesService.deleteHouse(id)
+        console.log(id)
+        try {
+            housesService.deleteHouse(id)
+        } catch (error) {
+            console.error(error)
+        }
     }
+
+    pool(id, price) {
+        try {
+            console.log(id, price)
+            housesService.pool(id, price)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    toilet(id, price) {
+        try {
+            housesService.toilet(id, price)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+
+    //GET ONE ITEM FROM SERVER -- UNNECESSARY HERE
+    // getOne() {
+    //     let id = ProxyState.cars[0].id
+    //     housesService.getOne(id)
+    // }
+
 }
